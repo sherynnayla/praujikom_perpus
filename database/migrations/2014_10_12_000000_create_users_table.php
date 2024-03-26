@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('nama_lengkap');
             $table->string('alamat');
+            $table->enum('role', ['admin', 'petugas', 'peminjam'])->default('peminjam');
             $table->timestamps();
         });
     }

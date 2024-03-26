@@ -2,19 +2,108 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Book;
 use Illuminate\Http\Request;
 
+
+
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+   
+    public function dashboard()
     {
-        //
+        return view('dashboard');
     }
 
+    public function books()
+    {
+        return view('books');
+    }
+    public function list()
+    {
+        return view('admin.list');
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     /**
      * Show the form for creating a new resource.
      */

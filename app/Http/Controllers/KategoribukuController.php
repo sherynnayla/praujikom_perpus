@@ -12,7 +12,27 @@ class KategoribukuController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Kategoribuku::all();
+        return view('category', compact('categories'));
+    }
+
+    public function add()
+    {
+        return view('/add');
+    } 
+
+    public function addBook (Request $request)
+    {
+
+        $request->validate([
+           'nama_kategori'=> 'required',
+        ]);
+
+        Kategoribuku::create([
+           'nama_kategori' => $request->nama_kategori,
+        ]);
+
+        return redirect()->route('category')->with('success', 'Berhasil membuat buku');
     }
 
     /**
@@ -42,24 +62,48 @@ class KategoribukuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kategoribuku $kategoribuku)
+
+     public function edit($id)
     {
-        //
+       //menampilkan form edit data
+       $kategoribuku = Kategoribuku::where('id', $id)->first();
+       //lalu tampilkan halaman 
+       return view('edit', compact('kategoribuku'));
+    }
+
+ 
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama_kategori' => 'required',
+          
+            
+        ]);
+
+            Kategoribuku::where('id', $id)->update([
+            'nama_kategori' => $request->nama_kategori,
+            
+        ]);  
+
+        return redirect('/category')->with('success', 'Data berhasil diperbarui');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategoribuku $kategoribuku)
-    {
-        //
-    }
-
+    
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kategoribuku $kategoribuku)
+    public function destroy($id)
     {
-        //
+        //parameter $id  mengambil data dari path dinamis {id}
+        //cari data yang isian column id nya sama dengan $id yang dikirim ke path dinamis
+        //kalau ada, ambil terus hapus datanya
+        Kategoribuku::where('id', '=', $id)->delete();
+        //kalau berhasil, nakal dibalikin ke halaman list todo dengan pemberitahuan
+        return redirect('/category')->with('successDelete', 'Berhasil menghapus data todo!');
     }
+    
 }
