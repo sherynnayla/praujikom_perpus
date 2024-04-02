@@ -3,9 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<form method="POST" action="{{route('add.Book')}}">
-@csrf
-@method('POST')
+<form method="POST" action="{{route('categoryStore')}}">
+    @csrf
+    @method('POST')
     <div class="form-group">
         <label for="exampleInputEmail1">Category</label>
         <input type="text" name="nama_kategori" class="form-control">

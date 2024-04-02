@@ -11,7 +11,7 @@
 
 <div class="table" style="margin-top:20px;  border-radius:10px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.11);">
     <div class="mt-5 d-flex justify-content-end">
-        <a href="/category/add" class="btn btn-primary" style="background-color:blue; margin:20px; ">Add Category</a>
+        <a href="/add-category" class="btn btn-primary" style="background-color:blue; margin:20px; ">Add Category</a>
     </div>
 
     <div class="card-body">
@@ -31,8 +31,8 @@
                     <td>{{$kategoribuku->nama_kategori}}</td>
                     <td>
                         <div class="d-flex flex-row w-75 ">
-                            <a href="/edit/{{ $kategoribuku->id }}" class="btn btn-warning btn-sm mr-2">Edit</a>
-                            <form action="/delete/{{ $kategoribuku->id }}" method="POST">
+                            <a href="/edit-category/{{ $kategoribuku->id }}" class="btn btn-warning btn-sm mr-2">Edit</a>
+                            <form action="/delete-category/{{ $kategoribuku->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>

@@ -1,9 +1,9 @@
 @extends('layout')
 
-@section('title', 'Dashboard')
+@section('title', 'Edit Category')
 
 @section('content')
-<form method="POST" action="/update/{{ $kategoribuku['id'] }}" id="create-form">
+<form method="POST" action="/update-category/{{ $kategoribuku['id'] }}" id="create-form">
     @csrf
     @method('PATCH')
     @if ($errors->any())'
@@ -22,7 +22,7 @@
     @endif
     <div class="form-group">
         <label for="exampleInputEmail1">Category</label>
-        <input type="text" name="nama_kategori" class="form-control">
+        <input type="text" name="nama_kategori" value="{{ $kategoribuku->nama_kategori }}" class="form-control">
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

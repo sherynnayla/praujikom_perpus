@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Kategoribuku;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Book extends Model
 {
@@ -12,6 +14,16 @@ class Book extends Model
         'penulis',
         'penerbit',
         'tahun_terbit',
+        'gambar',
+
         
     ];
+
+   
+
+    public function categories(): BelongsToMany
+{
+    return $this->belongsToMany(Kategoribuku::class, 'kategoribuku_relasis', 'buku_id', 'kategori_id');
+}
+
 }

@@ -21,7 +21,7 @@ class KategoribukuController extends Controller
         return view('/add');
     } 
 
-    public function addBook (Request $request)
+    public function addCategory (Request $request)
     {
 
         $request->validate([
@@ -32,7 +32,7 @@ class KategoribukuController extends Controller
            'nama_kategori' => $request->nama_kategori,
         ]);
 
-        return redirect()->route('category')->with('success', 'Berhasil membuat buku');
+        return redirect('/category')->with('success', 'Berhasil membuat buku');
     }
 
     /**
@@ -103,7 +103,7 @@ class KategoribukuController extends Controller
         //kalau ada, ambil terus hapus datanya
         Kategoribuku::where('id', '=', $id)->delete();
         //kalau berhasil, nakal dibalikin ke halaman list todo dengan pemberitahuan
-        return redirect('/category')->with('successDelete', 'Berhasil menghapus data todo!');
+        return redirect('/category')->with('successDelete', 'Berhasil Menghapus Kategori!');
     }
     
 }

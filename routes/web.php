@@ -40,19 +40,28 @@ Route::middleware('is.login')->group(function (){
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/list', [BookController::class, 'list']);
-Route::get('/books', [BookController::class, 'books'])->name('books');
-Route::get('/category', [KategoribukuController::class, 'index'])->name('category');
-Route::get('/add', [KategoribukuController::class, 'add'])->name('add');
-Route::post('/add', [KategoribukuController::class, 'addBook'])->name('add.Book');
-Route::get('/user', [UserController::class, 'index']);
+
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 
 });
 
-    Route::get('/category', [KategoribukuController::class, 'index'])->name('category');
-    Route::get('/add', [KategoribukuController::class, 'add'])->name('add');
-    Route::post('/add', [KategoribukuController::class, 'addBook'])->name('add.Book');
-    Route::get('/edit/{id}', [KategoribukuController::class, 'edit'])->name('categoryEdit');
-    Route::patch('/update/{id}', [KategoribukuController::class, 'update'])->name('update');
+    Route::get('/category', [KategoribukuController::class, 'index']);
+    Route::get('/add-category', [KategoribukuController::class, 'add'])->name('categoryAdd');
+    Route::post('/add-category', [KategoribukuController::class, 'addCategory'])->name('categoryStore');
+    Route::get('/edit-category/{id}', [KategoribukuController::class, 'edit'])->name('categoryEdit');
+    Route::patch('/update-category/{id}', [KategoribukuController::class, 'update'])->name('categoryUpdate');
+    Route::delete('/delete-category/{id}/', [KategoribukuController::class, 'destroy'])->name('categoryDelete');
 
-    Route::delete('/delete/{id}/', [KategoribukuController::class, 'destroy'])->name('delete');
+    Route::get('/books', [BookController::class, 'books']);
+    Route::get('/add-books', [Bookcontroller::class, 'add'])->name('bookAdd');
+    Route::post('/add-books', [Bookcontroller::class, 'addBook'])->name('bookStore');
+    Route::get('/edit-books/{id}', [BookController::class, 'editBook'])->name('editBook');
+    Route::patch('/update-books/{id}', [BookController::class, 'update'])->name('bookUpdate');
+    Route::delete('/delete-books/{id}/', [BookController::class, 'destroy'])->name('bookDelete');
+
+    Route::get('/user', [UserController::class, 'index']);
+    Route::get('/add-user', [UserController::class, 'add'])->name('userAdd');
+    Route::post('/add-user', [UserController::class, 'addUser'])->name('userStore');
+    Route::get('/edit-user/{id}', [UserController::class, 'editUser'])->name('editUser');
+    Route::patch('/update-user/{id}', [UserController::class, 'update'])->name('userUpdate');
+    Route::delete('/delete-user/{id}', [UserController::class, 'destroy'])->name('userDelete');

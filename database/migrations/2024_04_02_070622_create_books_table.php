@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('judul');
             $table->string('penulis');
             $table->string('penerbit');
-            $table->string('tahun_terbit');
+            $table->integer('tahun_terbit');
+            $table->string('gambar');
+            $table->timestamps();
         });
     }
 
