@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use App\Models\Book;
+use App\Models\Kategoribuku;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class BookSeeder extends Seeder
 {
@@ -13,6 +16,21 @@ class BookSeeder extends Seeder
      */
     public function run(): void
     {
+
+        Kategoribuku::create([
+            'nama_kategori' => 'Horror',
+        ]);
+
+        Kategoribuku::create([
+            'nama_kategori' => 'Romance',
+        ]);
+
+        Kategoribuku::create([
+            'nama_kategori' => 'Sience',
+        ]);
+
+        
+        
         User::create([
             'username' => 'admin',
             'email' => 'admin@gmail.com',
@@ -30,5 +48,16 @@ class BookSeeder extends Seeder
             'alamat' => 'jalan mawar',
             'role' => 'petugas'
         ]);
+
+        User::create([
+            'username' => 'sher',
+            'email' => 'sher@gmail.com',
+            'nama_lengkap' => 'sher',
+            'password' => bcrypt('1234'),
+            'alamat' => 'jalan mawar',
+            'role' => 'peminjam'
+        ]);
+
+        
     }
 }

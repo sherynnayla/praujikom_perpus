@@ -9,6 +9,9 @@
 
 </div>
 
+@if(Auth::user()->role == 'admin' || Auth::user()->role == 'petugas')
+
+
 <!-- Content Row -->
 <div class="row">
 
@@ -67,5 +70,18 @@
     </div>
 </div>
 </div>
+
+@else
+
+
+
+<div class="card-body mt-4">
+    <h5 class="card-title">Welcome, {{ Auth::user()->username }}</h5>
+    <p class="card-text">"Jadilah pembaca yang rajin dengan terus meminjam buku-buku yang menarik minatmu. Dengan rajin membaca, kamu dapat menemukan dunia yang tak terbatas di setiap halaman buku yang kamu telusuri."</p>
+    <a href="/books" class="btn btn-primary">Pinjam Buku</a>
+</div>
+
+
+@endif
 
 @endsection

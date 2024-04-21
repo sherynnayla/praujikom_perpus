@@ -15,46 +15,48 @@
     </div>
 
     <div class="card-body">
-        <table class="table">
-            <thead>
-                <tr style="color:grey; font-size:13px;">
-                    <th scope="col">No</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Alamat</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Action</th>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr style="color:grey; font-size:13px;">
+                        <th scope="col">No</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Action</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($user as $user)
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$user->username}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->alamat}}</td>
-                    <td>{{$user->role}}</td>
-                    <td>
-                        <div class="d-flex flex-row w-75 ">
-                            <a href="/edit-user/{{ $user->id }}" class="btn btn-warning btn-sm mr-2">Edit</a>
-                            <form action="/delete-user/{{ $user->id }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($user as $user)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$user->username}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->alamat}}</td>
+                        <td>{{$user->role}}</td>
+                        <td>
+                            <div class="d-flex flex-row w-75 ">
+                                <a href="/edit-user/{{ $user->id }}" class="btn btn-warning btn-sm mr-2">Edit</a>
+                                <form action="/delete-user/{{ $user->id }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </div>
 
-                    </td>
+                        </td>
+        </div>
+
+
+        </td>
+        </tr>
+        @endforeach
+
+        </tbody>
+        </table>
     </div>
-
-
-    </td>
-    </tr>
-    @endforeach
-
-    </tbody>
-    </table>
 </div>
 </div>
 @endsection

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=l">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/sb-admin-2.min.css') }}" />
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -66,6 +67,16 @@
                     <i class="fas fa-fw fa-book"></i>
                     <span>Books</span></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/peminjaman">
+                    <i class="fas fa-fw fa-box-archive"></i>
+                    <span>Books Borrowed</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/koleksi">
+                    <i class="fas fa-fw fa-box-archive"></i>
+                    <span>Books Collection</span></a>
+            </li>
             @endif
 
 
@@ -105,7 +116,7 @@
 
                 </nav>
 
-                <div class="container-fluid">@yield('content')</div>
+                <div class="container-fluid">@yield('content') </div>
 
 
                 <!-- End of Topbar -->

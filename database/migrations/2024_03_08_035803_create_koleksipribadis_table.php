@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('buku_id');
+            $table->timestamps();
+
         });
     }
 

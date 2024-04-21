@@ -65,7 +65,7 @@ class BookController extends Controller
 
 
     public function update(Request $request, $id)
-{
+    {
     $request->validate([
         'judul' => 'required',
         'penulis' => 'required',
@@ -97,23 +97,14 @@ class BookController extends Controller
     $book->categories()->sync($request->nama_kategori);
 
     return redirect('books')->with('success', 'Data buku berhasil diperbarui.');
+    }
 
-    
-}
-
-public function destroy($id)
-{
-    Book::where('id', '=', $id)->delete();
-    return redirect('/books')->with('successDelete', 'Berhasil Menghapus User!');
-    
-}
-
-    
-
-    
-
-    
-
+    public function destroy($id)
+    {
+        Book::where('id', '=', $id)->delete();
+        return redirect('/books')->with('successDelete', 'Berhasil Menghapus User!');
+        
+    }
 
 
 }

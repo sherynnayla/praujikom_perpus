@@ -35,34 +35,6 @@ class KategoribukuController extends Controller
         return redirect('/category')->with('success', 'Berhasil membuat buku');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Kategoribuku $kategoribuku)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-
      public function edit($id)
     {
        //menampilkan form edit data
@@ -70,8 +42,6 @@ class KategoribukuController extends Controller
        //lalu tampilkan halaman 
        return view('edit', compact('kategoribuku'));
     }
-
- 
 
     public function update(Request $request, $id)
     {
@@ -88,21 +58,10 @@ class KategoribukuController extends Controller
 
         return redirect('/category')->with('success', 'Data berhasil diperbarui');
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        //parameter $id  mengambil data dari path dinamis {id}
-        //cari data yang isian column id nya sama dengan $id yang dikirim ke path dinamis
-        //kalau ada, ambil terus hapus datanya
+        
         Kategoribuku::where('id', '=', $id)->delete();
-        //kalau berhasil, nakal dibalikin ke halaman list todo dengan pemberitahuan
         return redirect('/category')->with('successDelete', 'Berhasil Menghapus Kategori!');
     }
     

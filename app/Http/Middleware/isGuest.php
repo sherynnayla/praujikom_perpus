@@ -15,10 +15,12 @@ class isGuest
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check()) 
-        {
-            return redirect('dashboard')->with('notAllowed',' Anda sudah login!');
-        } 
+        if (Auth::check()) {
+            if (Auth::user()->role === 'admin' || Auth::user()->role === 'petugas') {
+                return redirect('dashboard')->with('notAllowed', 'Anda sudah login!');
+            }
+        }
+
         return $next($request);
     }
 }

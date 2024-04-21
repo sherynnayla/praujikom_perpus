@@ -4,10 +4,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\KategoribukuController;
 use App\Http\Controllers\PeminjamanController;
 
+use App\Http\Controllers\KategoribukuController;
+use App\Http\Controllers\KoleksipribadiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +22,10 @@ use App\Http\Controllers\PeminjamanController;
 |
 */
 
-Route::get('/', function ()
-{
+Route::get('/', function () {
     return view('dashboard');
-})->middleware('auth');
+})->middleware(['auth', 'check.role']);
+
 
 
 Route::middleware('is.guest')->group(function (){
@@ -41,7 +43,34 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/list', [BookController::class, 'list']);
 
-Route::get('/peminjaman', [PeminjamanController::class, 'index']);
+Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('index');
+Route::post('/peminjaman/{books}', [PeminjamanController::class, 'store'])->name('pinjam.store');
+Route::get('/peminjaman-selesai/{id}', [PeminjamanController::class, 'selesai'])->name('peminjamanSelesai');
+Route::get('/peminjaman-export', [PeminjamanController::class, 'export'])->name('export.peminjamanan');
+Route::get('/peminjaman-search', [PeminjamanController::class, 'search'])->name('peminjamanan.search');
+
+
+
+Route::get('/koleksi', [KoleksipribadiController::class, 'koleksi'])->name('koleksi');
+Route::post('/koleksi/tambah/{book}', [KoleksipribadiController::class, 'tambah'])->name('koleksi.tambah');
+
+//Route::get('/ulasan', [UlasanController::class, 'ulasan'])->name('ulasan');
+// Route::get('/add-ulasan', [UlasanController::class, 'add'])->name('ulasanAdd');
+// Route::post('/add-ulasan', [UlasanController::class, 'addUlasan'])->name('ulasan.store');
+
+
+Route::get('/ulasan/create/{bookId}', [UlasanController::class, 'create'])->name('ulasan.create');
+Route::post('/ulasan/store/{bookId}', [UlasanController::class, 'store'])->name('ulasan.store');
+Route::get('/ulasan/{bookId}', [UlasanController::class, 'show'])->name('ulasan.show');
+
+
+
+
+
+
+
+
+
 
 });
 

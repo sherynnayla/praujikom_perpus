@@ -2,64 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Koleksipribadi;
+use App\Models\Book;
+use App\Models\Kategoribuku;
 use Illuminate\Http\Request;
+use App\Models\Koleksipribadi;
 
 class KoleksipribadiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function koleksi()
     {
-        //
+        $books = Book::all();
+        $categories = Kategoribuku::all();
+        $koleksi = Koleksipribadi::where('user_id', auth()->id())->with('books')->get();
+        return view('koleksi', compact('books', 'koleksi', 'categories'));
     }
+    
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function tambah(Book $book)
     {
-        //
+        $user_id = auth()->id();
+    
+        // Cek apakah buku sudah ada dalam koleksi pribadi pengguna
+        $existingKoleksi = Koleksipribadi::where('user_id', $user_id)
+            ->where('buku_id', $book->id)
+            ->first();
+    
+        if ($existingKoleksi) {
+            // Buku sudah ada dalam koleksi pribadi, tidak perlu menambahkannya lagi
+            return redirect()->back()->with('error', 'Buku sudah ada dalam koleksi pribadi Anda.');
+        }
+    
+        // Jika buku belum ada dalam koleksi pribadi, tambahkan ke koleksi pribadi
+        $koleksi = Koleksipribadi::create([
+            'user_id' => $user_id,
+            'buku_id' => $book->id,
+        ]);
+    
+        return redirect()->back()->with('success', 'Buku berhasil ditambahkan ke koleksi pribadi.');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Koleksipribadi $koleksipribadi)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Koleksipribadi $koleksipribadi)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Koleksipribadi $koleksipribadi)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Koleksipribadi $koleksipribadi)
-    {
-        //
-    }
+    
 }
